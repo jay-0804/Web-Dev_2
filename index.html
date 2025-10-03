@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moon Orbit Animation</title>
+    <title>Ferris Wheel Animation</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            background-color: #1a1a1a;
+            background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,73 +20,117 @@
             overflow: hidden;
         }
 
-        .orbit-container {
+        .ferris-wheel {
             position: relative;
-            width: 300px;
-            height: 300px;
-            border: 2px solid #fff;
+            width: 200px;
+            height: 200px;
+            border: 6px solid #fff;
             border-radius: 50%;
-            animation: rotateOrbit 10s linear infinite;
+            animation: rotateWheel 40s infinite linear;
         }
 
-        .earth {
+        .wheel-wrap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotateWheel 40s infinite linear;
+        }
+
+        .wheel {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 50px;
-            height: 50px;
-            background-color: #4caf50;
-            border-radius: 50%;
+            width: 100%;
+            height: 100%;
             transform: translate(-50%, -50%);
+            border: 6px solid #fff;
+            border-radius: 50%;
         }
 
-        .moon-orbit {
+        .wheel span {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 150px;
-            height: 150px;
-            border: 1px dashed #fff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotateMoon 10s linear infinite;
+            width: 2px;
+            height: 50%;
+            background: #fff;
+            transform-origin: 50% 100%;
         }
 
-        .moon {
+        .wheel span:nth-child(1) { transform: rotate(0deg); }
+        .wheel span:nth-child(2) { transform: rotate(45deg); }
+        .wheel span:nth-child(3) { transform: rotate(90deg); }
+        .wheel span:nth-child(4) { transform: rotate(135deg); }
+        .wheel span:nth-child(5) { transform: rotate(180deg); }
+        .wheel span:nth-child(6) { transform: rotate(225deg); }
+        .wheel span:nth-child(7) { transform: rotate(270deg); }
+        .wheel span:nth-child(8) { transform: rotate(315deg); }
+
+        .buckets {
             position: absolute;
-            top: 0;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            top: 50%;
             left: 50%;
-            width: 30px;
-            height: 30px;
-            background-color: #b0bec5;
+        }
+
+        .buckets div {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ff6347;
             border-radius: 50%;
-            transform: translateX(-50%);
+            top: 50%;
+            left: 50%;
+            margin-top: -20px;
+            margin-left: -20px;
+            animation: rotateBuckets 40s infinite linear;
         }
 
-        @keyframes rotateOrbit {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+        .buckets div:nth-child(1) { animation-delay: 0s; }
+        .buckets div:nth-child(2) { animation-delay: -5s; }
+        .buckets div:nth-child(3) { animation-delay: -10s; }
+        .buckets div:nth-child(4) { animation-delay: -15s; }
+        .buckets div:nth-child(5) { animation-delay: -20s; }
+        .buckets div:nth-child(6) { animation-delay: -25s; }
+        .buckets div:nth-child(7) { animation-delay: -30s; }
+        .buckets div:nth-child(8) { animation-delay: -35s; }
+
+        @keyframes rotateWheel {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        @keyframes rotateMoon {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+        @keyframes rotateBuckets {
+            0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="orbit-container">
-        <div class="earth"></div>
-        <div class="moon-orbit">
-            <div class="moon"></div>
+    <div class="ferris-wheel">
+        <div class="wheel-wrap">
+            <div class="wheel">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="buckets">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 </body>
